@@ -1,0 +1,220 @@
+﻿@model IEnumerable<TaskManager.Models.Tasks>
+
+@{
+    Layout = "~/Views/Shared/_TaskLayout.cshtml";
+    ViewData["Title"] = "Tasks";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<h1>Tasks</h1>
+
+<p>
+    <a asp-action="Create" class="btn btn-primary">Create New</a>
+</p>
+<div class="row justify-content-center">
+@foreach (var item in Model)
+{
+    @if (item.Category.Name == "Morning")
+    {
+        @*onclick="location.href = '@(Url.Action("TaskDone", new {id = item.Id}))'"*@
+        <div id="@item.Id" class="TableSelect col-md-auto align-self-start" onclick="location.href = '@(Url.Action("TaskDone", new {id = item.Id}))'">
+         
+            @*<b>@Html.DisplayNameFor(model => model.TaskName)</b>  :*@
+           <span class="badge bg-secondary big align-self-start"> @Html.DisplayFor(modelItem => item.TaskName) </span>
+
+
+            @*<b>@Html.DisplayNameFor(model => model.Category)</b> :*@
+          <span class="badge bg-secondary big align-self-start">  @Html.DisplayFor(modelItem => item.Category.Name) </span>
+
+       
+            <div class=EditDelete>
+                      @*<b>@Html.DisplayNameFor(model => model.Done)</b> :*@
+                @if (item.Done == true)
+                {
+                   <span class="btn btn-success"> @Html.DisplayFor(modelItem => item.Done) </span>
+                }else if(item.Done == false)
+                {
+                   <span class="btn btn-danger"> @Html.DisplayFor(modelItem => item.Done) </span>
+                }
+
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                   @if (item.Date != null || item.Description != null)
+            {
+                <div class="btn btn-secondary dropdown-toggle" onclick="DropDown(@item.Id)">Details</div>
+            }
+            </div>
+            <div class="collapse">
+                @if (item.Date != null)
+                {
+                 <span class="badge bg-secondary"> Date: @Html.DisplayFor(modelItem => item.Date) </span> <br />
+                    ;
+                }
+                @if (item.Description != null)
+                {
+                  <span class="badge bg-secondary description"> Desciption: @Html.DisplayFor(modelItem => item.Description) </span>
+                    ;
+                }
+            </div>
+        </div>
+    }
+
+}
+
+@foreach (var item in Model)
+{
+    @if (item.Category.Name == "Afternoon")
+    {
+        @*onclick="location.href = '@(Url.Action("TaskDone", new {id = item.Id}))'"*@
+        <div id="@item.Id" class="TableSelect col-md-auto align-self-start" onclick="location.href = '@(Url.Action("TaskDone", new {id = item.Id}))'">
+         
+            @*<b>@Html.DisplayNameFor(model => model.TaskName)</b>  :*@
+           <span class="badge bg-secondary big align-self-start"> @Html.DisplayFor(modelItem => item.TaskName) </span>
+
+
+            @*<b>@Html.DisplayNameFor(model => model.Category)</b> :*@
+          <span class="badge bg-secondary big align-self-start">  @Html.DisplayFor(modelItem => item.Category.Name) </span>
+
+       
+            <div class=EditDelete>
+                      @*<b>@Html.DisplayNameFor(model => model.Done)</b> :*@
+                @if (item.Done == true)
+                {
+                   <span class="btn btn-success"> @Html.DisplayFor(modelItem => item.Done) </span>
+                }else if(item.Done == false)
+                {
+                   <span class="btn btn-danger"> @Html.DisplayFor(modelItem => item.Done) </span>
+                }
+
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                   @if (item.Date != null || item.Description != null)
+            {
+                <div class="btn btn-secondary dropdown-toggle" onclick="DropDown(@item.Id)">Details</div>
+            }
+            </div>
+            <div class="collapse">
+                @if (item.Date != null)
+                {
+                 <span class="badge bg-secondary"> Date: @Html.DisplayFor(modelItem => item.Date) </span> <br />
+                    ;
+                }
+                @if (item.Description != null)
+                {
+                  <span class="badge bg-secondary description"> Desciption: @Html.DisplayFor(modelItem => item.Description) </span>
+                    ;
+                }
+            </div>
+        </div>
+    }
+
+}
+
+@foreach (var item in Model)
+{
+    @if (item.Category.Name == "Evening")
+    {
+        @*onclick="location.href = '@(Url.Action("TaskDone", new {id = item.Id}))'"*@
+        <div id="@item.Id" class="TableSelect col-md-auto align-self-start" onclick="location.href = '@(Url.Action("TaskDone", new {id = item.Id}))'">
+         
+            @*<b>@Html.DisplayNameFor(model => model.TaskName)</b>  :*@
+           <span class="badge bg-secondary big align-self-start"> @Html.DisplayFor(modelItem => item.TaskName) </span>
+
+
+            @*<b>@Html.DisplayNameFor(model => model.Category)</b> :*@
+          <span class="badge bg-secondary big align-self-start">  @Html.DisplayFor(modelItem => item.Category.Name) </span>
+
+       
+            <div class=EditDelete>
+                      @*<b>@Html.DisplayNameFor(model => model.Done)</b> :*@
+                @if (item.Done == true)
+                {
+                   <span class="btn btn-success"> @Html.DisplayFor(modelItem => item.Done) </span>
+                }else if(item.Done == false)
+                {
+                   <span class="btn btn-danger"> @Html.DisplayFor(modelItem => item.Done) </span>
+                }
+
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                   @if (item.Date != null || item.Description != null)
+            {
+                <div class="btn btn-secondary dropdown-toggle" onclick="DropDown(@item.Id)">Details</div>
+            }
+            </div>
+            <div class="collapse">
+                @if (item.Date != null)
+                {
+                 <span class="badge bg-secondary"> Date: @Html.DisplayFor(modelItem => item.Date) </span> <br />
+                    ;
+                }
+                @if (item.Description != null)
+                {
+                  <span class="badge bg-secondary description"> Desciption: @Html.DisplayFor(modelItem => item.Description) </span>
+                    ;
+                }
+            </div>
+        </div>
+    }
+
+}
+
+@foreach (var item in Model)
+{
+    @if (item.Category.Name == "Night")
+    {
+        @*onclick="location.href = '@(Url.Action("TaskDone", new {id = item.Id}))'"*@
+        <div id="@item.Id" class="TableSelect col-md-auto align-self-start" onclick="location.href = '@(Url.Action("TaskDone", new {id = item.Id}))'">
+         
+            @*<b>@Html.DisplayNameFor(model => model.TaskName)</b>  :*@
+           <span class="badge bg-secondary big align-self-start"> @Html.DisplayFor(modelItem => item.TaskName) </span>
+
+
+            @*<b>@Html.DisplayNameFor(model => model.Category)</b> :*@
+          <span class="badge bg-secondary big align-self-start">  @Html.DisplayFor(modelItem => item.Category.Name) </span>
+
+       
+            <div class=EditDelete>
+                      @*<b>@Html.DisplayNameFor(model => model.Done)</b> :*@
+                @if (item.Done == true)
+                {
+                   <span class="btn btn-success"> @Html.DisplayFor(modelItem => item.Done) </span>
+                }else if(item.Done == false)
+                {
+                   <span class="btn btn-danger"> @Html.DisplayFor(modelItem => item.Done) </span>
+                }
+
+                <a asp-action="Edit" class="btn btn-primary" asp-route-id="@item.Id">Edit</a>
+                <a asp-action="Delete" class="btn btn-danger" asp-route-id="@item.Id">Delete</a>
+                   @if (item.Date != null || item.Description != null)
+            {
+                <div class="btn btn-secondary dropdown-toggle" onclick="DropDown(@item.Id)">Details</div>
+            }
+            </div>
+            <div class="collapse">
+                @if (item.Date != null)
+                {
+                 <span class="badge bg-secondary"> Date: @Html.DisplayFor(modelItem => item.Date) </span> <br />
+                    ;
+                }
+                @if (item.Description != null)
+                {
+                  <span class="badge bg-secondary description"> Desciption: @Html.DisplayFor(modelItem => item.Description) </span>
+                    ;
+                }
+            </div>
+        </div>
+    }
+
+}
+
+</div>
+<script type="text/javascript">
+    function DropDown(id){
+      parent = document.getElementById(id);
+      child = parent.lastElementChild;
+      child.className = (child.className == 'collapse.show') ? 'collapse' : 'collapse.show';
+          if (!e) var e = window.event;
+    e.cancelBubble = true;
+    if (e.stopPropagation) e.stopPropagation();
+    }
+</script>
